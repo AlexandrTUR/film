@@ -48,7 +48,7 @@ namespace WebApplication1.Models.Films
         public DbSet<Film> films { get; set; }
         public DbSet<Genre> genres { get; set; }
         public DbSet<Person> persons { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder//добавляем связи
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)//добавляем связи
         {
             modelBuilder.Entity<Person>().ToTable("t_Persons");
             modelBuilder.Entity<Film>()

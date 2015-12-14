@@ -5,3 +5,54 @@
 
 <h2>Recommend</h2>
 <p>Выбран жанр: @Html.DisplayFor(x => x.GenreName)</p>
+<p>
+    <table class="table">
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Дата
+            </th>
+            <th> Жанры</th>
+            <th> Актеры</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.films)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @if (item.genres != null)
+                {
+                    foreach (var genre in item.genres)
+                    {
+                            @genre.name <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @if (item.persons != null)
+                {
+                    foreach (var p in item.persons)
+                    {
+                            @p.name <br />
+                        }
+                    }
+                </td>
+                <!--
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>-->
+            </tr>
+        }
+
+    </table>
+</p>

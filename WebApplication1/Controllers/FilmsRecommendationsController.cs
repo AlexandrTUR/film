@@ -20,11 +20,22 @@ namespace WebApplication1.Controllers
 
         public ActionResult Recommend()
         {
-            var recommendation = new Recommendation
+            int id=0;
+            
+            if(int.TryParse(Request.Params["genre"],out id))
             {
-                GenreName = Request.Params["genre"]
-            };
-            return View(recommendation);
+                var f = db.genres.Find(id);
+                if (f != null)
+                {
+                    var recommendation = new Recommendation
+                    {
+                        GenreName = f.name,
+                        films = f.films.ToList()
+                    };
+                    return View(recommendation);
+                }
+            }
+            return View("Index");
         }
     }
 }
