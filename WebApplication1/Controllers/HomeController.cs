@@ -31,8 +31,7 @@ namespace WebApplication1.Controllers
         {
             var model = new ImagesModel();
             model.ImagesURIs.Add(new Uri("http://content.onliner.by/news/realt/2012/04/iXRO-8S46Y2.jpg"));
-            model.ImagesURIs.Add(new Uri("http://content.onliner.by/news/realt/2012/04/yaOJz5wwLo2.jpg"));
-            model.ImagesURIs.Add(new Uri("http://content.onliner.by/news/realt/2012/04/iXRO-8S46Y1.jpg"));
+           
 
             return View(model);
         }
