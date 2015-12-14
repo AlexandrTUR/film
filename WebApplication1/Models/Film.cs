@@ -40,7 +40,7 @@ namespace WebApplication1.Models.Films
             films = new List<Film>();
         }
     }
-    public class FilmsContext : DbContext
+    public class FilmsContext : DbContext//создание базы
     {
         public FilmsContext() : base()
         {
@@ -48,14 +48,14 @@ namespace WebApplication1.Models.Films
         public DbSet<Film> films { get; set; }
         public DbSet<Genre> genres { get; set; }
         public DbSet<Person> persons { get; set; }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder//добавляем связи
         {
             modelBuilder.Entity<Person>().ToTable("t_Persons");
             modelBuilder.Entity<Film>()
                         .HasMany<Genre>(s => s.genres)
                         .WithMany(c => c.films)
                         .Map(cs =>
-                        {//TODO rename
+                        {
                             cs.MapLeftKey("FilmRefId");
                             cs.MapRightKey("GenreRefId");
                             cs.ToTable("FilmGenre");
@@ -64,7 +64,7 @@ namespace WebApplication1.Models.Films
                         .HasMany<Person>(s => s.persons)
                         .WithMany(c => c.films)
                         .Map(cs =>
-                        {//TODO rename
+                        {
                             cs.MapLeftKey("FilmRefId");
                             cs.MapRightKey("PersonRefId");
                             cs.ToTable("FilmToPerson");
